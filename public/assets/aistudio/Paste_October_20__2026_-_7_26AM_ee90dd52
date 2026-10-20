@@ -1,0 +1,1058 @@
+# MASTER PROMPT: BUILD SHADOW LUDO AI — A COMPLETE, INTELLIGENT, PREMIUM LUDO GAME
+
+## 1. YOUR ROLE AND MISSION
+
+Act as a senior full-stack game developer, professional game designer, AI engineer, UI/UX designer, animation specialist, software architect, and quality-assurance engineer.
+
+Your mission is to design, develop, test, and deliver a complete, polished, fully playable Ludo game called **SHADOW LUDO AI**.
+
+This is not a request for a static mockup, a landing page, a game concept, or a simplified demonstration. Build a real interactive game with working game mechanics, correct rules, intelligent computer opponents, beautiful graphics, responsive layouts, sound effects, game settings, persistent preferences, and a complete end-to-end playing experience.
+
+Work directly within the Google AI Studio application-building environment. Inspect the existing project before making changes, respect the environment's available capabilities, and implement the game using compatible technologies.
+
+### Primary objective
+
+Create a Ludo game that feels like a professionally designed casual gaming application, with the simplicity of traditional Ludo and the polish, responsiveness, and intelligence of a modern digital board game.
+
+The final application must be:
+- Fully playable, not merely visually impressive.
+- Mechanically correct and consistent with the selected Ludo rules.
+- Beautiful on desktop, tablet, and mobile.
+- Intelligent when playing against computer opponents.
+- Stable during long sessions and repeated games.
+- Easy for beginners to understand.
+- Organized, maintainable, and extensible.
+- Honest about which features require an internet connection, backend, API, or additional configuration.
+
+Do not sacrifice working game logic for decorative effects.
+
+---
+
+## 2. GAME IDENTITY AND VISUAL DIRECTION
+
+Game name: SHADOW LUDO AI
+
+Tagline: "Roll the Dice. Outsmart the Board."
+
+Design a distinctive identity combining traditional Ludo colors with a premium, modern gaming aesthetic.
+
+### Visual identity
+
+Use the following palette:
+
+- Background: deep charcoal, midnight navy, or near-black.
+- Primary accent: electric cyan.
+- Secondary accent: violet.
+- Player colors: classic red, blue, green, and yellow.
+- Main surfaces: layered dark panels with subtle gradients.
+- Text: high-contrast white and soft gray.
+- Success states: green.
+- Warnings: amber.
+- Error states: red.
+
+The game board itself must retain recognizable traditional Ludo colors. Do not make the board so dark, neon-heavy, or visually complex that players cannot easily distinguish tokens, paths, safe squares, and home areas.
+
+### Art direction
+
+Create a refined casual-game interface with:
+- Smooth rounded corners.
+- Consistent spacing and alignment.
+- Attractive dice with clearly visible pips.
+- Distinctive player tokens with subtle depth and shadows.
+- Soft lighting and restrained gradients.
+- Elegant button states.
+- Clear visual hierarchy.
+- Tasteful animations.
+- Consistent iconography.
+- High-quality typography.
+
+Avoid excessive glow, flashing lights, giant text, unnecessary panels, clutter, and distracting particle effects.
+
+Use original interface elements and original game branding. Do not copy another game's proprietary artwork, logos, or exact interface.
+
+---
+
+## 3. TECHNOLOGY AND APPLICATION ARCHITECTURE
+
+First inspect the environment and its existing files.
+
+Use the framework and tools supported by Google AI Studio. If a project has not been initialized, prefer the following architecture when compatible:
+
+- React for the user interface.
+- TypeScript for reliable game logic.
+- Vite if a suitable React application needs to be initialized.
+- CSS Modules, regular CSS, or the existing styling system for presentation.
+- SVG and CSS for the board, pieces, and animations.
+- Browser localStorage for preferences and suitable lightweight persistence.
+- A modular, testable game engine separated from React components.
+
+Use the existing project configuration wherever possible instead of replacing working infrastructure unnecessarily.
+
+### Suggested project organization
+
+Separate the application into clear modules such as:
+
+- `components/` — reusable interface elements.
+- `components/Board` — board and path rendering.
+- `components/Dice` — dice display and animation.
+- `components/Token` — player pieces.
+- `components/GameHUD` — player status, turn indicator, and controls.
+- `components/Settings` — game configuration.
+- `components/GameOver` — winning screen and results.
+- `game/engine` — authoritative game-state transitions.
+- `game/rules` — rule validation and movement.
+- `game/ai` — computer-player decision-making.
+- `game/path` — board coordinates and path definitions.
+- `hooks/` — reusable React state and interaction logic.
+- `utils/` — persistence, formatting, and other helpers.
+- `tests/` — automated game-engine tests.
+
+These names are suggestions, not rigid requirements. Adapt them to the generated project's actual structure.
+
+### Architectural requirements
+
+1. Keep the core game engine independent of visual components.
+2. Represent players, tokens, turns, dice results, and game status with explicit types.
+3. Use a single authoritative game state.
+4. Validate every action before changing the state.
+5. Prevent simultaneous or duplicate moves.
+6. Ensure animations never determine the actual game outcome.
+7. Avoid unnecessary dependencies.
+8. Use seeded randomness in tests where useful.
+9. Do not place API keys, secrets, or credentials in client-side source code.
+10. Do not claim that an external multiplayer server or online service exists unless it has actually been implemented and configured.
+
+Deliver functional source code, not pseudocode, placeholders, or unfinished components.
+
+---
+
+## 4. GAME MODES
+
+Implement a complete main menu that allows the user to choose a game mode.
+
+### Mode A: Play Against AI
+
+This is the primary mode.
+
+Allow one human player to compete against one, two, or three computer-controlled opponents.
+
+Supported configurations:
+- 2 players: 1 human and 1 AI.
+- 3 players: 1 human and 2 AI opponents.
+- 4 players: 1 human and 3 AI opponents.
+
+Allow the human to choose their player color where possible. Assign the remaining colors consistently to the other players.
+
+Every AI player must make valid moves automatically when its turn begins.
+
+AI turns should be animated at a comfortable pace. Do not force the human to click a button for every computer action.
+
+### Mode B: Local Multiplayer
+
+Allow two, three, or four people to play on the same device.
+
+Requirements:
+- Every player must receive the correct turn.
+- Human players must make their own decisions.
+- Show whose turn it is.
+- Allow players to select their own movable tokens.
+- Do not expose hidden future dice results.
+- Keep the board oriented and readable throughout play.
+
+Support a straightforward local pass-and-play experience. Explain clearly when a turn belongs to another player.
+
+### Mode C: Practice Mode
+
+Create an optional practice mode where a player can learn the rules and play against easier AI opponents.
+
+Include:
+- Brief contextual explanations.
+- Highlights for legal moves.
+- Explanations of why a token cannot move.
+- Helpful hints when available.
+- An option to turn hints off.
+
+### Mode D: Online Multiplayer — Optional Extension
+
+Design the application so online multiplayer could be added later, but do not fake an online mode.
+
+Real online multiplayer requires a suitable networking architecture, shared authoritative game state, player synchronization, reconnection handling, and appropriate security.
+
+If the available environment and configuration support a genuine online implementation, build it using a suitable backend. Otherwise, leave it as a clearly labeled future feature and ensure the other game modes are fully functional.
+
+Do not require accounts, paid services, or external credentials for the core offline game.
+
+---
+
+## 5. OFFICIAL GAMEPLAY RULES
+
+Implement a coherent, documented standard Ludo ruleset. If rules vary by region, make the relevant variants configurable rather than mixing conflicting rules.
+
+Use a conventional four-color board with four tokens per player.
+
+### 5.1 Starting a game
+
+- Initialize all tokens in their respective home yards.
+- Set the first player according to the configured starting-player rule.
+- Initialize the current turn, dice state, game status, and move history.
+- Display the correct player colors.
+- Do not permit movement before a valid dice result is available.
+
+### 5.2 Rolling the dice
+
+- Provide an interactive Roll Dice button.
+- Generate a uniformly random integer from 1 to 6 for normal gameplay.
+- Display the result clearly.
+- Disable rolling while a roll animation or move is in progress.
+- Disable rolling when the current player must select a legal token.
+- Prevent duplicate clicks from producing multiple rolls.
+- Show an appropriate visual and accessible state when rolling is unavailable.
+
+Do not use predictable sequences in normal gameplay. Test mode may use deterministic dice sequences.
+
+### 5.3 Entering a token onto the board
+
+Use the standard six-to-enter rule by default.
+
+- A token in the yard may enter its starting square when its player rolls a six.
+- A roll that does not satisfy the entry requirement cannot move a token out of the yard.
+- The entering token must occupy the correct starting position on the shared track.
+- The token must become selectable and movable according to the game rules.
+
+If the player has no legal move after rolling, display a clear message and advance the turn according to the selected ruleset.
+
+### 5.4 Token movement
+
+- Each player has exactly four tokens.
+- Each token has an explicit state: yard, active track, home lane, or finished.
+- A token follows the correct route for its color.
+- Tokens must move forward according to the dice result.
+- Movement must use a consistent coordinate and path system.
+- A token cannot jump beyond its finish position.
+- Tokens must not move backward unless a separately configured variant explicitly allows it.
+- Only legal destinations may be selected.
+- A move must not change the current turn more than once.
+
+Implement movement using logical path indices rather than estimating token positions from screen coordinates.
+
+### 5.5 Rolling a six
+
+Under the default rules:
+- Rolling a six grants an additional roll.
+- The player may enter a new token or move an eligible token.
+- If the chosen move captures an opponent, apply any additional-turn rule consistently.
+- Apply any three-consecutive-sixes penalty only if that rule is explicitly enabled in the selected ruleset.
+
+Make bonus-turn rules configurable and test them carefully.
+
+### 5.6 Capturing opponents
+
+When a token lands on an opponent's unprotected token:
+- Send the captured token back to its home yard.
+- Update the captured token's state.
+- Play an appropriate capture animation.
+- Display a short capture notification.
+- Apply the configured bonus-turn rule if applicable.
+- Update the AI's strategic evaluation of the board.
+
+If multiple opponents can be captured at a destination, handle the situation according to the chosen ruleset.
+
+### 5.7 Safe squares
+
+Implement designated safe squares and each player's starting square according to the selected board rules.
+
+- Opponents must not capture protected tokens.
+- Safe-square status must be derived from the board definition.
+- Do not identify a square as safe solely because it has a decorative icon.
+- Display safe squares consistently.
+- Make sure safe-square behavior matches the movement engine.
+
+If the selected ruleset supports blockades, implement them explicitly. Otherwise, do not accidentally create illegal blockades through the visual stacking of tokens.
+
+### 5.8 Home lane and finishing
+
+- Each color has a separate final home lane.
+- Tokens enter the correct home lane after completing the required circuit.
+- Only the correct player can use that lane.
+- Movement must respect the selected rules regarding exact finishing rolls.
+- A token must never move beyond the final destination.
+- Finished tokens must remain in the finished state.
+
+By default, require the exact dice value needed to reach the final home position.
+
+### 5.9 Winning the game
+
+A player wins when all four of their tokens reach the final home position.
+
+When a player wins:
+- Stop normal gameplay.
+- Prevent additional dice rolls and token moves.
+- Display a polished victory screen.
+- Show the winner's color and name.
+- Animate the winning moment.
+- Offer Play Again, Return to Menu, and View Results.
+- Preserve valid match statistics if statistics are enabled.
+
+For multiplayer modes, distinguish the winner from players who have not yet finished.
+
+### 5.10 Turn management
+
+Turn management must be deterministic and reliable.
+
+Handle:
+- Normal turn advancement.
+- Bonus turns.
+- Rolls with no legal moves.
+- Capture-related bonus turns when enabled.
+- Consecutive-six penalties when enabled.
+- AI turns.
+- Game completion.
+- Resetting or starting a new match.
+
+Never allow two players to act simultaneously.
+
+---
+
+## 6. BUILD A MATHEMATICALLY CORRECT BOARD
+
+The board is the visual and mechanical center of the application.
+
+Use a traditional square Ludo board with four colored home quadrants, a shared outer track, color-specific home lanes, and a central finishing area.
+
+### Board requirements
+
+1. Use a consistent logical board coordinate system.
+2. Define the shared track as a sequence of ordered positions.
+3. Define each player's entry index and route.
+4. Define each player's final home-lane positions.
+5. Define safe squares in a single authoritative configuration.
+6. Render tokens from logical game-state coordinates.
+7. Make the board responsive without changing its underlying logical structure.
+8. Keep all token positions aligned with actual squares.
+9. Handle multiple tokens occupying the same legal location without obscuring every piece.
+10. Preserve a recognizable board layout on both large and small screens.
+
+### Board rendering
+
+Use SVG or a similarly precise rendering technique.
+
+The board should include:
+- Four distinct home areas.
+- Four player entry squares.
+- Clearly visible shared-path squares.
+- Four color-specific home lanes.
+- A central finishing area.
+- Safe-square indicators.
+- Clear token boundaries.
+- Optional subtle texture and shadows.
+
+Create board coordinates and path definitions programmatically or through a single well-defined configuration. Avoid duplicating movement logic in CSS.
+
+### Token rendering
+
+Each token must:
+- Have a unique player-and-token identifier.
+- Occupy its correct logical position.
+- Be visually distinct from other tokens.
+- Show a selected or highlighted state when appropriate.
+- Support mouse and touch selection.
+- Offer an accessible label.
+- Avoid overlapping so severely that users cannot select the intended piece.
+
+When multiple tokens share a square, use a small, deterministic offset or another clear visual arrangement without changing their logical positions.
+
+### Board validation
+
+Before considering the board complete, verify that:
+- Every player's entry square is correct.
+- Every shared-track index is valid.
+- Every home lane has the correct number of positions.
+- Every token can reach its final destination legally.
+- All four colors use valid, non-conflicting routes.
+- Screen resizing does not move tokens away from their logical squares.
+
+---
+
+## 7. DESIGN AN INTELLIGENT AI OPPONENT
+
+The AI is one of the most important features of SHADOW LUDO AI.
+
+Build a rule-aware decision engine that evaluates available legal moves and chooses strategically useful actions.
+
+Do not create an AI that always moves the first token in an array, selects randomly without strategy, or cheats by accessing hidden dice results.
+
+### 7.1 AI difficulty levels
+
+Provide three difficulty levels.
+
+**Easy**
+- Prioritizes simple, valid moves.
+- Sometimes selects less optimal moves.
+- Uses straightforward, understandable priorities.
+- Is suitable for beginners.
+
+**Normal**
+- Evaluates captures, safety, token progress, and entry opportunities.
+- Avoids many obvious dangers.
+- Balances advancing several tokens with finishing existing ones.
+- Makes reasonably strong decisions without excessive computation.
+
+**Hard**
+- Evaluates the board from the AI player's perspective.
+- Prioritizes winning opportunities and valuable captures.
+- Considers opponent threats and vulnerable positions.
+- Evaluates safe movement and home-lane progress.
+- Avoids unnecessary exposure to likely captures.
+- Uses bounded lookahead or a lightweight simulation when practical.
+- Balances immediate rewards with longer-term strategic value.
+
+Difficulty should affect decision quality, not secretly alter the dice probabilities.
+
+### 7.2 AI move priorities
+
+Use a documented scoring model. Adjust the weights through testing.
+
+Consider these strategic factors:
+
+1. Immediate victory.
+2. Finishing a token.
+3. Capturing an opponent.
+4. Escaping a dangerous position.
+5. Moving to a safe square.
+6. Entering a token onto the board.
+7. Advancing toward the home lane.
+8. Making meaningful progress with tokens already in play.
+9. Reducing the likelihood of being captured.
+10. Maintaining a useful distribution of tokens across the board.
+11. Avoiding unnecessary moves that expose valuable progress.
+12. Supporting future legal moves.
+
+Do not apply a rigid ranking without considering the actual board. For example, a capture may be undesirable if it exposes the AI's own token to a more serious threat.
+
+### 7.3 AI decision procedure
+
+For every AI turn:
+
+1. Obtain the actual current game state.
+2. Determine the result of the AI's legitimate dice roll.
+3. Generate all legal moves.
+4. Evaluate each candidate move.
+5. Score the resulting board state.
+6. Select the strongest move for the configured difficulty.
+7. Execute the selected move through the same validated game engine used by human players.
+8. Update the game state.
+9. Determine whether the AI receives another turn.
+10. Continue until the turn ends or the game finishes.
+
+If no legal move exists, follow the ruleset and advance appropriately.
+
+The AI must never bypass legal-move validation.
+
+### 7.4 AI responsiveness
+
+- Use short, natural pauses for rolling and moving.
+- Keep the interface responsive during AI calculations.
+- Avoid unbounded search or expensive calculations on the main thread.
+- Cancel pending AI actions when the game is reset or the component is unmounted.
+- Prevent an old AI action from modifying a new game.
+- Display a small indicator such as "AI is thinking..." when useful.
+
+---
+
+## 8. DICE, MOVEMENT, AND GAME ANIMATIONS
+
+Animation should make the game feel polished without interfering with its rules.
+
+### Dice animation
+
+Create a visually appealing dice roll animation:
+- Brief rotation or shake.
+- Clear transition to the final number.
+- Smooth easing.
+- A small visual emphasis when a six is rolled.
+- Reduced-motion support.
+
+The final dice result must be determined by the game engine, not by the animation.
+
+### Token movement
+
+- Animate a token along its actual route.
+- Move through intermediate squares when practical.
+- Use consistent timing.
+- Prevent new input during an active move.
+- Ensure the final position exactly matches the game state.
+- Handle capture animations and home-lane movement.
+- Skip or shorten animations if necessary for reduced-motion settings.
+
+### Additional feedback
+
+Provide restrained feedback for:
+- Entering the board.
+- Capturing a token.
+- Reaching a safe square.
+- Finishing a token.
+- Winning the game.
+- Invalid or unavailable actions.
+
+Animations must never cause duplicate state updates, skipped turns, or illegal moves.
+
+---
+
+## 9. SOUND DESIGN
+
+Implement optional sound effects with a master sound toggle.
+
+Suggested sounds:
+- Dice rolling.
+- Token movement.
+- Token capture.
+- Token entering home.
+- Button interaction.
+- Victory.
+
+Requirements:
+- Provide independent sound and music controls if music is implemented.
+- Respect the browser's audio restrictions.
+- Initialize audio only through appropriate user interaction.
+- Avoid unexpected autoplay.
+- Handle missing audio assets gracefully.
+- Use original, properly licensed, or generated sound assets.
+- Make the game playable when muted.
+
+Do not invent nonexistent audio files and assume they work. Include actual available assets or implement a reliable alternative.
+
+---
+
+## 10. COMPLETE USER INTERFACE
+
+Create all major screens and connect them to real application state.
+
+### Screen A: Main menu
+
+Include:
+- Game logo and title.
+- A prominent Play button.
+- AI mode.
+- Local multiplayer mode.
+- Practice mode.
+- Settings.
+- Rules and instructions.
+- A small, tasteful version or credits label.
+
+The menu must be clean and easy to navigate.
+
+### Screen B: New-game setup
+
+Allow the player to choose:
+- Game mode.
+- Number of players.
+- Human player color, when applicable.
+- AI difficulty.
+- Optional rule variants.
+- Sound settings.
+
+Validate the selected configuration before starting the match.
+
+Do not show irrelevant controls for modes that do not use them.
+
+### Screen C: Active game
+
+The gameplay screen should include:
+- The Ludo board as the main focus.
+- Current player indicator.
+- Dice and roll button.
+- Player names and colors.
+- Token counts or progress.
+- Current dice result.
+- Available-move highlights.
+- A concise status message.
+- Pause or game-menu control.
+- Sound toggle.
+- Optional move history.
+
+On desktop, use the available screen space intelligently. On mobile, prioritize a large, readable board and avoid excessive scrolling.
+
+### Screen D: Pause menu
+
+Allow:
+- Resume.
+- Restart match, with confirmation.
+- Return to main menu, with confirmation when appropriate.
+- Sound settings.
+
+Pausing must stop or safely suspend animations and pending AI actions.
+
+### Screen E: Victory screen
+
+Show:
+- Winner.
+- Final player standings where applicable.
+- Match duration if tracked.
+- Number of captures if tracked.
+- Replay.
+- New game.
+- Main menu.
+
+Only display statistics that the game actually calculates.
+
+### Screen F: Rules and help
+
+Provide concise explanations of:
+- Starting tokens.
+- Dice rolls.
+- Moving tokens.
+- Safe squares.
+- Captures.
+- Bonus turns.
+- Reaching home.
+- Winning conditions.
+
+Explain optional rule variations separately from the default rules.
+
+---
+
+## 11. RESPONSIVE DESIGN AND ACCESSIBILITY
+
+The application must work on desktop computers, laptops, tablets, and mobile browsers.
+
+### Responsive requirements
+
+**Desktop**
+- Use a balanced game layout.
+- Keep the board centered and prominent.
+- Place player information and controls around the board without crowding it.
+
+**Tablet**
+- Scale the board proportionally.
+- Keep the dice and active-player status visible.
+- Avoid clipping or overlapping.
+
+**Mobile**
+- Use a compact layout.
+- Keep all board squares and tokens touch-accessible.
+- Ensure important buttons remain visible.
+- Avoid horizontal page scrolling.
+- Handle portrait and landscape orientations.
+- Ensure modals fit within the available viewport.
+- Avoid tiny text and controls.
+
+### Accessibility requirements
+
+- Provide visible keyboard focus.
+- Use semantic buttons and controls.
+- Give interactive tokens accessible labels.
+- Do not communicate player identity through color alone.
+- Maintain sufficient text contrast.
+- Support keyboard navigation wherever practical.
+- Respect reduced-motion preferences.
+- Make game status available to assistive technologies.
+- Ensure the dice result and current player are understandable without relying only on animation.
+
+---
+
+## 12. STATE MANAGEMENT AND DATA INTEGRITY
+
+Implement a well-defined game state.
+
+At minimum, represent:
+- Game identifier.
+- Game mode.
+- Selected rules.
+- Players.
+- Player colors.
+- Player types: human or AI.
+- Token positions.
+- Current player index.
+- Current dice result.
+- Dice and animation status.
+- Available legal moves.
+- Bonus-turn status.
+- Game phase.
+- Winner.
+- Move history, if enabled.
+
+### Game phases
+
+Use explicit phases such as:
+- Menu.
+- Setup.
+- Waiting for roll.
+- Rolling.
+- Waiting for token selection.
+- Moving.
+- AI thinking.
+- Paused.
+- Finished.
+
+Adapt the phase names to the implementation, but ensure transitions are explicit and valid.
+
+### State transition rules
+
+- All gameplay actions must pass through validated transitions.
+- Reject actions that are invalid for the current phase.
+- Do not rely solely on disabled buttons for protection.
+- Avoid stale closures and outdated AI decisions.
+- Keep rendering separate from state mutation.
+- Use immutable updates or another predictable state-management approach.
+- Ensure restarting creates a clean, independent match.
+- Do not allow timers or animations from an old match to affect a new one.
+
+### Persistence
+
+Use localStorage for appropriate non-sensitive information, such as:
+- Sound preferences.
+- Difficulty preference.
+- Selected visual settings.
+- Optional statistics.
+
+If saving and resuming matches is implemented, validate saved state before restoring it. Handle corrupted, missing, or outdated data gracefully.
+
+Do not persist every intermediate animation frame.
+
+---
+
+## 13. OPTIONAL AI ASSISTANT AND GEMINI INTEGRATION
+
+The game must remain fully playable even without an external AI API.
+
+If Google AI Studio supports a secure and practical Gemini integration, add an optional AI companion.
+
+Potential features:
+- Explain the rules.
+- Answer questions about legal moves.
+- Provide beginner-friendly strategy tips.
+- Summarize the current match.
+- Explain why a particular move was selected.
+- Offer post-game strategic analysis.
+
+### Important implementation rules
+
+1. The deterministic game engine remains authoritative.
+2. Gemini must not decide whether a move is legally valid.
+3. Gemini must not directly mutate the game state.
+4. The AI companion must use only the game information supplied to it.
+5. Do not expose API keys in frontend code.
+6. Use supported server-side or managed integration patterns where required.
+7. If no valid API configuration exists, show a clear explanation and keep the offline game operational.
+8. Do not make ordinary dice rolls dependent on an AI API request.
+9. Do not claim that the AI companion is active unless it actually works.
+
+Keep strategic move selection local, fast, reproducible in tests, and independent of external network availability.
+
+---
+
+## 14. GAME RULE ENGINE: REQUIRED FUNCTIONS
+
+Implement clear, reusable functions for the game engine.
+
+The following are conceptual responsibilities; use suitable names for the actual code.
+
+### Core functions
+
+- Create a new game state.
+- Initialize players and tokens.
+- Roll the dice.
+- Determine legal moves.
+- Validate a proposed move.
+- Enter a token onto the board.
+- Advance a token.
+- Calculate a token's destination.
+- Determine whether a move captures an opponent.
+- Check safe-square protection.
+- Detect home-lane entry.
+- Detect a finished token.
+- Determine whether a player has won.
+- Calculate the next player.
+- Determine bonus-turn eligibility.
+- Execute a complete move.
+- Reset a game.
+- Serialize and restore a saved match, if supported.
+
+### Essential correctness requirements
+
+- Every token must have a unique identifier.
+- Every token must have a valid position state.
+- A finished token cannot move again.
+- A token in the yard cannot move without meeting the entry requirement.
+- A move cannot exceed the permitted path.
+- A player cannot move another player's token.
+- A player cannot move a token using an invalid dice result.
+- A move cannot execute twice.
+- A game cannot continue after a winner is determined.
+- The UI cannot override the engine's decision about legal moves.
+
+Use a single shared rules implementation for human players and AI players.
+
+---
+
+## 15. TESTING AND QUALITY ASSURANCE
+
+Do not declare the project complete merely because the app renders.
+
+Test the game engine and the user experience.
+
+### Unit tests
+
+Write automated tests for:
+- Initial game state.
+- Valid and invalid dice results.
+- Token entry.
+- Normal token movement.
+- Illegal movement.
+- Exact finishing rolls.
+- Captures.
+- Safe-square protection.
+- Bonus turns.
+- No-legal-move situations.
+- Consecutive-six variants, if enabled.
+- Turn advancement.
+- AI move validity.
+- Winning conditions.
+- Resetting the game.
+- Persistence validation, if implemented.
+
+### Integration tests
+
+Verify:
+- A human can complete a full match against AI.
+- AI turns execute automatically.
+- Local multiplayer rotates correctly between players.
+- Token selection triggers the correct move.
+- Captures update both players' states.
+- Winning stops the game.
+- Restarting cancels old AI actions.
+- Sound controls work.
+- Settings persist when intended.
+- A missing optional AI API does not break the core game.
+
+### User-interface tests
+
+Check:
+- Main menu navigation.
+- Game setup.
+- Board rendering.
+- Legal-move highlighting.
+- Mouse input.
+- Touch input.
+- Keyboard accessibility.
+- Responsive layouts.
+- Pause and resume.
+- Victory and replay flows.
+- Browser console errors.
+- Missing assets.
+- Invalid state recovery.
+
+### Simulation testing
+
+Where practical, simulate thousands of legal game transitions using deterministic test dice sequences.
+
+Check invariants such as:
+- Every token belongs to exactly one player.
+- No token has an invalid position.
+- Finished tokens remain finished.
+- Current-player indices remain valid.
+- No move violates the selected ruleset.
+- Every game ends only when the win condition is met.
+- AI never chooses a move outside the legal-move set.
+- The engine never gets permanently stuck in an impossible state.
+
+If a bug appears, fix the underlying cause and rerun the relevant tests.
+
+Do not hide test failures or claim tests passed when they have not been run.
+
+---
+
+## 16. ERROR HANDLING AND PERFORMANCE
+
+The application must remain stable during normal use.
+
+Handle:
+- Rapid repeated clicks.
+- Invalid token selection.
+- Invalid game configuration.
+- Unexpected component unmounts.
+- Interrupted animations.
+- Corrupted saved preferences.
+- Missing optional resources.
+- AI calculation cancellation.
+- Browser refreshes.
+- Unsupported optional features.
+
+Performance requirements:
+- Avoid unnecessary full-board re-renders.
+- Keep animations smooth.
+- Avoid excessive dependencies.
+- Avoid expensive calculations during rendering.
+- Bound any AI search depth.
+- Clean up timers, event listeners, and pending work.
+- Keep the game playable on ordinary student laptops and mobile devices.
+
+Do not add elaborate effects that substantially degrade performance on lower-powered hardware.
+
+---
+
+## 17. IMPLEMENTATION WORKFLOW
+
+Follow this sequence and complete the actual implementation.
+
+### Phase 1: Inspect and plan
+
+- Inspect existing project files and dependencies.
+- Identify the current application framework.
+- Confirm what tools and features are available.
+- Establish the board model, ruleset, and state transitions.
+- Identify any limitations before promising optional features.
+
+### Phase 2: Implement the core engine
+
+- Define player and token types.
+- Define the board paths.
+- Implement movement rules.
+- Implement captures and safe squares.
+- Implement finishing and winning.
+- Implement turn management.
+- Add tests for core rules.
+
+Do not build an elaborate visual interface around an untested engine.
+
+### Phase 3: Build the board and interaction layer
+
+- Render the complete board.
+- Render all tokens.
+- Connect token positions to the game state.
+- Implement dice interaction.
+- Implement legal-move highlighting.
+- Implement selection and movement.
+- Verify all player routes.
+
+### Phase 4: Implement AI
+
+- Build legal-move evaluation.
+- Add easy, normal, and hard difficulties.
+- Connect AI turns to the shared game engine.
+- Test that AI never makes illegal moves.
+- Ensure AI turns do not interfere with human input.
+
+### Phase 5: Build the full interface
+
+- Main menu.
+- Game setup.
+- Gameplay HUD.
+- Settings.
+- Pause menu.
+- Rules and help.
+- Victory screen.
+
+### Phase 6: Polish
+
+- Add dice animations.
+- Add token movement animations.
+- Add sound.
+- Add responsive layouts.
+- Improve accessibility.
+- Add appropriate persistence.
+
+### Phase 7: Test and debug
+
+- Run available automated tests.
+- Run the application.
+- Play complete matches.
+- Inspect the console and runtime errors.
+- Test desktop and mobile layouts.
+- Fix discovered bugs.
+
+### Phase 8: Final delivery
+
+Ensure the project includes all required source files, dependencies, assets, and configuration.
+
+Provide a concise completion report stating:
+- What was implemented.
+- Which game modes work.
+- Which AI features work.
+- Which tests were actually run.
+- Whether any limitations remain.
+- How to run the application.
+- Whether any optional configuration is needed.
+
+Do not stop after presenting a plan. Continue to implementation and verification within the capabilities of the environment.
+
+---
+
+## 18. ACCEPTANCE CRITERIA
+
+The game is considered complete only when the following conditions are satisfied.
+
+**Gameplay**
+- [ ] Four-color Ludo board.
+- [ ] Four tokens per player.
+- [ ] Correct token-entry rule.
+- [ ] Correct dice movement.
+- [ ] Correct safe squares and captures.
+- [ ] Correct home lanes.
+- [ ] Correct finishing and victory.
+- [ ] Correct turn and bonus-turn management.
+- [ ] No illegal token movements.
+
+**AI**
+- [ ] Playable against computer opponents.
+- [ ] Three difficulty levels.
+- [ ] Legal-move-based decisions.
+- [ ] Strategic evaluation of captures and safety.
+- [ ] No hidden dice manipulation.
+- [ ] No duplicate or stale AI actions.
+
+**Interface**
+- [ ] Main menu.
+- [ ] Game setup.
+- [ ] Complete active-game screen.
+- [ ] Pause and restart.
+- [ ] Rules and help.
+- [ ] Victory screen.
+- [ ] Responsive desktop and mobile layouts.
+
+**Quality**
+- [ ] Working interaction, not decorative controls.
+- [ ] Reliable game-state transitions.
+- [ ] No critical runtime errors.
+- [ ] Tested win and replay flows.
+- [ ] Accessible controls and readable board.
+- [ ] Graceful handling of optional feature failures.
+- [ ] Honest reporting of test results.
+
+**Delivery**
+- [ ] Complete application source.
+- [ ] Required assets and dependencies.
+- [ ] Working startup and build configuration.
+- [ ] Clear instructions for running the game.
+- [ ] No fake functionality or unexplained placeholders.
+
+---
+
+## 19. FINAL INSTRUCTIONS TO GEMINI
+
+Think like a professional game-development team, but work efficiently.
+
+Make reasonable engineering decisions without repeatedly asking me questions about ordinary implementation details. Use the defaults specified in this prompt unless a technical limitation requires a change.
+
+Prioritize, in order:
+
+1. Correct and complete game logic.
+2. A fully playable game loop.
+3. A mathematically consistent board.
+4. Intelligent and reliable computer opponents.
+5. High-quality visual design.
+6. Responsive interaction and animations.
+7. Testing, debugging, and maintainability.
+8. Optional enhancements.
+
+When a feature cannot be implemented in the current environment, explain the limitation and deliver the strongest working alternative without breaking the core game.
+
+Do not replace functional implementation with screenshots, mockups, descriptions, or pseudocode.
+
+Do not claim that online multiplayer, Gemini integration, sound assets, automated tests, or deployment work unless they have actually been implemented and verified.
+
+Start by inspecting the project and implementing the core game engine. Then build the complete interface around it, integrate the AI opponents, test the application, and refine the experience until the acceptance criteria are met.
+
+**Final product:** SHADOW LUDO AI — a beautiful, reliable, intelligent, fully playable Ludo game that players can enjoy immediately, with or without an internet connection.
+
+Build the game now.
